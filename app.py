@@ -16,7 +16,9 @@ ALGORITHMS = ['RS256']
 API_AUDIENCE = 'shows'
 YOUR_CLIENT_ID = 'ZjgUkMB9JxQbis2hVh1d2d9jfcyeTZQu'
 YOUR_CLIENT_SECRET = '1VcM6mSAy3OohWt6KZwwAxeDIZNTQTNHZi3rWEGcjOFbRQWKv3oLtnkLqG7xZ0Nn'
-
+ASSISTANT_ROLE_ID = 'rol_ZNrwNNQqwSOmhpov'
+DIRECTOR_ROLE_ID = 'rol_HlzotlBP5vkSKGL9'
+PRODUCER_ROLE_ID = 'rol_t2ets4eZtnaqf6Xo'
 
         
 def create_app(test_config=None):
@@ -33,7 +35,6 @@ def create_app(test_config=None):
         return response
     
    
-
 
     @app.route('/')
     def index():
@@ -62,7 +63,7 @@ def create_app(test_config=None):
         if len(permissions) == 0:
 
 
-            url3 = 'https://castingagency.auth0.com/api/v2/users/' + user_id + '/roles'
+            url3 = f'https://{AUTH0_DOMAIN}/api/v2/users/{user_id}/roles'
 
             headers = {
                     'content-type': "application/json",
@@ -70,7 +71,7 @@ def create_app(test_config=None):
                     'cache-control': "no-cache"
                     }
 
-            data = "{ \"roles\": [ \"rol_ZNrwNNQqwSOmhpov\" ] }"
+            data = "{ \"roles\": [ \" rol_ZNrwNNQqwSOmhpov \" ] }"
             data = data.encode('ascii')
             req3 = uri.Request(url3, data, headers )
 
@@ -115,7 +116,7 @@ def create_app(test_config=None):
         if len(permissions) == 0:
 
 
-            url3 = 'https://castingagency.auth0.com/api/v2/users/' + user_id + '/roles'
+            url3 = f'https://{AUTH0_DOMAIN}/api/v2/users/{user_id}/roles'
 
             headers = {
                     'content-type': "application/json",
@@ -123,7 +124,7 @@ def create_app(test_config=None):
                     'cache-control': "no-cache"
                     }
 
-            data = "{ \"roles\": [ \"rol_HlzotlBP5vkSKGL9\" ] }"
+            data = "{ \"roles\": [ \" rol_HlzotlBP5vkSKGL9 \" ] }"
             data = data.encode('ascii')
             req3 = uri.Request(url3, data, headers )
 
@@ -172,7 +173,7 @@ def create_app(test_config=None):
         if len(permissions) == 0:
 
 
-            url3 = 'https://castingagency.auth0.com/api/v2/users/' + user_id + '/roles'
+            url3 = f'https://{AUTH0_DOMAIN}/api/v2/users/{user_id}/roles'
 
             headers = {
                     'content-type': "application/json",
@@ -180,7 +181,7 @@ def create_app(test_config=None):
                     'cache-control': "no-cache"
                     }
 
-            data = "{ \"roles\": [ \"rol_t2ets4eZtnaqf6Xo\" ] }"
+            data = "{ \"roles\": [ \" rol_t2ets4eZtnaqf6Xo \" ] }"
             data = data.encode('ascii')
             req3 = uri.Request(url3, data, headers )
 

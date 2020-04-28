@@ -8,6 +8,10 @@ import yaml
 AUTH0_DOMAIN = 'castingagency.auth0.com'
 ALGORITHMS = ['RS256']
 API_AUDIENCE = 'shows'
+YOUR_CLIENT_ID = 'ZjgUkMB9JxQbis2hVh1d2d9jfcyeTZQu'
+YOUR_CLIENT_SECRET = '1VcM6mSAy3OohWt6KZwwAxeDIZNTQTNHZi3rWEGcjOFbRQWKv3oLtnkLqG7xZ0Nn'
+YOUR_MNGM_API_CLIENT_ID = 'ku7FNiai7lJUpY88ShrT040ESpDthC85'
+YOUR_MNGM_API_CLIENT_SECRET = 'DpZLfIiUJP0Pj808Ye_9bsekbgwnohsfR7zi_fkbt9xYpr4r_esEwHgBims-hFnD'
 
 # AuthError Exception
 '''
@@ -134,10 +138,10 @@ def requires_auth(permission=''):
     return requires_auth_decorator
 
 def get_access_token(code):
-    url = 'https://castingagency.auth0.com/oauth/token'
+    url = f'https://{AUTH0_DOMAIN}/oauth/token'
     headers = {}
     headers['content-type'] = 'application/x-www-form-urlencoded'
-    data = 'grant_type=authorization_code&client_id=ZjgUkMB9JxQbis2hVh1d2d9jfcyeTZQu&client_secret=1VcM6mSAy3OohWt6KZwwAxeDIZNTQTNHZi3rWEGcjOFbRQWKv3oLtnkLqG7xZ0Nn&code='+ code +'&redirect_uri=https://casting-agency-osama.herokuapp.com/'
+    data = f'grant_type=authorization_code&client_id={YOUR_CLIENT_ID}&client_secret={YOUR_CLIENT_SECRET}&code={code}&redirect_uri=http://127.0.0.1:5000/'
     data = data.encode('ascii')
     req = uri.Request(url, data, headers )
     try:
@@ -160,7 +164,7 @@ def get_access_token(code):
 
 def get_user_id(token):
 
-    url2 = 'https://castingagency.auth0.com/userinfo'
+    url2 = f'https://{AUTH0_DOMAIN}/userinfo'
     headers = {}
     headers['Authorization'] = 'Bearer ' + token 
     req2 = uri.Request(url2, headers=headers)
@@ -187,10 +191,10 @@ def get_user_id(token):
 
 def get_MGMT_API_ACCESS_TOKEN():
 
-    url = 'https://' + AUTH0_DOMAIN + '/oauth/token'
+    url = f'https://{AUTH0_DOMAIN}/oauth/token'
     headers = {}
     headers['content-type'] = 'application/x-www-form-urlencoded'
-    data = 'grant_type=client_credentials&client_id=ku7FNiai7lJUpY88ShrT040ESpDthC85&client_secret=DpZLfIiUJP0Pj808Ye_9bsekbgwnohsfR7zi_fkbt9xYpr4r_esEwHgBims-hFnD&audience=https://castingagency.auth0.com/api/v2/'
+    data = f'grant_type=client_credentials&client_id={YOUR_MNGM_API_CLIENT_ID}&client_secret={YOUR_MNGM_API_CLIENT_SECRET}&audience=https://castingagency.auth0.com/api/v2/'
     data = data.encode('ascii')
     req = uri.Request(url, data, headers )
     try:
@@ -209,3 +213,4 @@ def get_MGMT_API_ACCESS_TOKEN():
         data_valid = yaml.load(data_decoded, Loader=yaml.FullLoader)
         mngm_api_token = data_valid.get('access_token')
         return mngm_api_token      
+
