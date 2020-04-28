@@ -1,0 +1,86 @@
+{% extends 'home.html' %}
+
+{% block body%}
+<div class="container">
+    <div class="jumbotron">
+        <h1>Hello !</h1>
+        <p><strong>Note:</strong> You should have a Movie Id form Movies page to create an Actor!</p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+           {% for category, message in messages %}
+           <div class="alert alert-block alert-{{ category}} fade in">
+            <a class="close" data-dismiss="alert">&times;</a>
+            {{ message }}
+            </div>
+           {% endfor %}
+          {% endif %}
+        {% endwith %}
+          
+        
+        {% if role == 'director' or role == 'producer'  %}
+        <p><a class="btn btn-primary btn-lg" href="/actors/create" role="button">Create Actor </a></p>
+        {% else %} 
+        <p><a class="btn btn-primary btn-lg disabled" href="/actors/create" role="button">Create Actor </a></p>
+        {% endif %}
+
+      </div>
+</div>
+<div class="container">
+    
+    
+    <div class="row">
+    {% for actor in actors  %}
+    <div class="col-sm-6 col-md-4">
+    <div class="thumbnail" class="img-responsive">
+        
+        <p><img src="{{actor.image_url}}" alt="image" style="width: 350px;height: 300px;"></p>
+        <div class="caption">
+        <h3> {{actor.name}}</h3>
+        <p> <span class="lead">Id :</span> {{actor.id}}</p>
+        <p> <span class="lead">Age :</span> {{actor.age}}</p>
+        <p><span class='lead'>Gender :</span> {{actor.gender}}</p>
+
+        {% if role == 'director' or role == 'producer'  %}
+        <button type="button" id="del" class="del-item btn btn-danger" data-id="{{ actor.id }}">Delete</button>
+        <a href="/actors/{{actor.id}}" class="btn btn-primary " role="button">Edit</a>
+        {% else %}
+        <button type="button" id="del" class="del-item btn btn-danger disabled" data-id="{{ actor.id }}">Delete</button>
+        <a href="/actors/{{actor.id}}" class="btn btn-primary disabled" role="button">Edit</a>
+        {% endif %}
+        </div>
+    </div>
+    </div>
+    {% endfor %}
+    </div>
+    
+   
+</div>
+
+
+
+{% endblock%}
+{% block script%}
+
+<script>
+    const delButtons = document.querySelectorAll('.del-item');
+          for(let i = 0; i < delButtons.length; i++ ){ 
+            const delButton = delButtons[i];
+            delButton.onclick = function(e) {
+              console.log('event', e);
+              
+              const delId = e.target.dataset['id']
+              fetch('/actors/' + delId , {
+                method: 'DELETE',
+              })
+              .then(function() {
+                const item = e.target.parentElement;
+                const it = item.parentElement
+                it.remove();
+                
+              })
+            }
+    
+          }
+</script>
+
+{% endblock %}

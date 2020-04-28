@@ -1,0 +1,52 @@
+
+
+.navbar
+{
+    margin-bottom: 0px;
+}
+.navbar-inverse .navbar-nav > .active > a 
+{
+color: #fff;
+background-color: #f21515;
+
+}
+.dropdown-menu > li > a
+{
+    color: #fff;
+}
+.dropdown-menu
+{
+    background-color: black;
+}
+.dropdown-menu > li > a:hover
+{
+    color: #fff;
+    background-color: #f21515;
+}
+.navbar-inverse .navbar-brand
+{
+    color: #cdc5c5;
+    font-size: 30px;
+    line-height: 20px;
+    text-decoration: underline #f21515;
+}
+.about
+{
+    padding: 10px;
+
+}
+.about h1 > span
+{
+    color: #f21515;
+}
+.features
+{
+    background: #EEE;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.list-group
+{
+    width: 600px;
+}

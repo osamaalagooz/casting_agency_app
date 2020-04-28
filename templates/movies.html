@@ -1,0 +1,84 @@
+{% extends 'home.html' %}
+
+{% block body%}
+<div class="container">
+    <div class="jumbotron">
+        <h1>Hello !</h1>
+        <p>{% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+           {% for category, message in messages %}
+           <div class="alert alert-block alert-{{ category}} fade in">
+            <a class="close" data-dismiss="alert">&times;</a>
+            {{ message }}
+            </div>
+           {% endfor %}
+          {% endif %}
+        {% endwith %}
+           </p>
+        {% if role == 'producer' %}
+         <p><a class="btn btn-primary btn-lg" href="/movies/create" role="button">Create Movie </a></p>
+        {% else %} 
+         <p><a class="btn btn-primary btn-lg disabled" href="/movies/create" role="button">Create Movie </a></p>
+        {% endif %}
+      </div>
+</div>
+<div class="container">
+    <div class="row">
+        {% for movie in movies %}
+    <div class="col-sm-6 col-md-4">
+    
+    <div class="thumbnail">
+        <img src="{{movie.image_url}}" alt="image" style="width: 350px;height: 300px;" >
+        <div class="caption">
+        <h3><span class="lead">Title : </span> {{ movie.title}}</h3>
+        <p><span class='lead'>Movie ID : </span>{{movie.id}}</p>
+        <p><span class='lead'>Release Date : </span>{{movie.release_date}}</p>
+        
+        {% if role == 'producer' %}
+          <button type="button" id="del" class="del-item btn btn-danger" data-id="{{ movie.id }}">Delete</button>
+        {% else %}
+          <button type="button" id="del" class="del-item btn btn-danger disabled" data-id="{{ movie.id }}">Delete</button>
+        {% endif %}
+
+        {% if role == 'director' or role == 'producer'  %}
+         <a href="/movies/{{ movie.id }}" class="btn btn-primary" role="button">Edit</a>
+        {% else %}
+         <a href="/movies/{{ movie.id }}" class="btn btn-primary disabled" role="button">Edit</a>
+        {% endif %}
+         <a href="/movies/{{ movie.id }}/actors" class="btn btn-default" role="button">Crew</a>
+      </div>
+      
+     
+    </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock%}
+
+{% block script%}
+
+<script>
+    const delButtons = document.querySelectorAll('.del-item');
+          for(let i = 0; i < delButtons.length; i++ ){ 
+            const delButton = delButtons[i];
+            delButton.onclick = function(e) {
+              console.log('event', e);
+              
+              const delId = e.target.dataset['id']
+              fetch('/movies/' + delId , {
+                method: 'DELETE',
+              })
+              .then(function() {
+                const item = e.target.parentElement;
+                const it = item.parentElement;
+                it.remove();
+                
+                
+              })
+            }
+    
+          }
+</script>
+
+{% endblock %}

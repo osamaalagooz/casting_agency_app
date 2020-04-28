@@ -1,0 +1,46 @@
+{% extends 'home.html' %}
+{% block body %}
+
+<div class="container">
+    <div class="form-wrapper">
+        <form method="post" class="form">
+        <h3 class="form-heading">Edit on {{actor.name}}</h3>
+        <div class="form-group" style="width: 400px;">
+            <label for="name">Name</label>
+            <p>{{actor.name}}</p>
+            {{ form.name(class_ = 'form-control', autofocus = true, placeholder= 'ex: Ahmed Helmy') }}
+        </div>
+        
+        <div class="form-group" style="width: 100px;">
+            <label for="age">Age</label>
+            <p>{{actor.age}}</p>
+            {{ form.age(class_ = 'form-control', autofocus = true) }}
+            </div>
+        
+        <div class="form-group">
+            <label for="genres">Image Link</label>
+            <p><a href="{{actor.image_url}}"><img src="{{actor.image_url}}" alt="actor photo" style="width: 50px;height: 50px;border-radius: 25px;"></a></p>
+            {{ form.image_url(class_ = 'form-control', placeholder='http://', id=form.state, autofocus = true) }}
+            </div>
+        
+        <div class="form-group" style="width: 200px;">
+            <label>Movie Id</label>
+            <p>{{actor.movie_id}}</p>
+            <div class="form-group">
+                {{ form.movie(class_ = 'form-control', placeholder= 'ex: 12', autofocus = true) }}
+        </div>
+
+        <div class="form-group" style="margin-bottom: 10px;">
+            <label>Gender</label>
+            
+            <div class="form-group" style="list-style: none;">
+                {{ form.gender}}
+            </div>
+            
+        </div>
+        
+        <input type="submit" value="submit Changes" class="btn btn-primary btn-lg btn-block" style="width: 200px;margin-top: 20px;">
+        </form>
+    </div>
+</div>
+{% endblock %}

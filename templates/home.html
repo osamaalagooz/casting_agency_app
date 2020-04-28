@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title%} Home {% endblock %}</title>
+   
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+    {% block head%}
+    {% endblock %}
+    
+    
+</head>
+<body>
+    
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/home">Casting Agency</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              {% if data %} 
+              <li style="padding: 0px;"><a style="padding: 0px;margin: 0px;" href="/home"><img src="{{data.picture}}" alt="profile_photo" style="width: 50px;height: 50px;border-radius: 25px;margin-right: 5px"> </a></li>
+              <!-- <li class="active"><a href="/home">Home<span class="sr-only">(current)</span></a></li>   -->
+              <li><a href="/movies">Movies</a></li>
+              <li><a href="/actors">Actors</a></li>
+              <li><a href="https://castingagency.auth0.com/v2/logout?client_id=ZjgUkMB9JxQbis2hVh1d2d9jfcyeTZQu&returnTo=https://casting-agency-osama.herokuapp.com/logout" class="logout">Log Out</a></li>
+              {% endif %}
+              {% if not data %}  
+              <li><a href="/">Home<span class="sr-only">(current)</span></a></li>  
+              <li class="disabled"><a href="/movies">Movies</a></li>
+              <li class="disabled"><a href="/actors">Actors</a></li>
+              <li class="disabled"><a href="https://castingagency.auth0.com/v2/logout?client_id=ZjgUkMB9JxQbis2hVh1d2d9jfcyeTZQu&returnTo=https://casting-agency-osama.herokuapp.com/logout">Log Out</a></li>
+              {% endif %}
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      {% block body %} 
+      <div class="container">
+        <section class="about text-center">
+          <div class="well well-lg">
+            <h1>Hello  <span>{{data.nickname}}</span> </h1>
+            <p class="lead"> Your Role is <span style="color: #f21515;">{{ role }}</span></p>
+             </div>     
+        </section>
+        <section class="text-center">
+          <img src="static/images/casting-agency2.png" alt="photo" style="width: 1140px;">
+        </section>
+      </div>
+      <div class="container text-center" >
+          <sectoin class="features">
+              <h1>Roles's Permissions </h1>
+              <p class="lead text-center"> <span style="color: #f21515;">Assisant</span><br> 
+                <ul class="list-group text-center" style="width: 600px; margin-left: 270px;">
+                  <li class="list-group-item">See all the movies and actors</li>
+              </ul></p>
+              <p class="lead text-center"> <span style="color: #f21515;">Director</span>  <br> 
+                <ul class="list-group text-center" style="width: 600px; margin-left: 270px;">
+                  <li class="list-group-item">See all the Movies and Actors</li>
+                  <li class="list-group-item">Edit Actors</li>
+                  <li class="list-group-item">Updata Actors and Movies</li>
+                  <li class="list-group-item">Delete Actors</li>
+              </ul>
+              
+              </p>
+              <p class="lead text-center"> <span style="color: #f21515;">Producer</span>
+                <ul class="list-group text-center" style="width: 600px; margin-left: 270px;">
+                  <li class="list-group-item">See all the Movies and Actors</li>
+                  <li class="list-group-item">Edit Actors and Movies</li>
+                  <li class="list-group-item">Updata Actors and Movies</li>
+                  <li class="list-group-item">Delete Actors and Movies</li>
+              </ul>
+            </p>  
+              
+          </sectoin>
+      </div>
+    <!-- <P>Hello  </P>
+     
+    <img src="{{data.picture}}" alt="profile_photo"> -->
+ 
+    {% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    {% block script%}{% endblock %}
+</body>
+</html>

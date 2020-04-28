@@ -1,0 +1,83 @@
+{% extends 'home.html' %}
+
+{% block head%}
+<style>
+    
+    .list-group
+    {
+        margin-top: 40px;
+        width: 600px;
+        margin-left: 270px;
+    }
+    .list-group a 
+    {
+        background: #999999;
+        color: white;
+        
+    }
+    .list-group a:hover
+    {
+        background: #404040;
+        color:white;
+    }
+</style>
+{% endblock %}
+
+
+
+
+{% block body %}
+
+
+
+<div class="container text-center">
+    <section class="about text-center">
+          <div class="well well-lg">
+            <h1>Hello  </h1>
+            <p class="lead"> JOIN US !</p>
+             </div>     
+        </section>
+    <section>
+     <div class="list-group">
+        <p class="list-group-item lead">Available Roles <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></p>
+        <a href="https://castingagency.auth0.com/authorize?audience=shows&response_type=code&client_id=ZjgUkMB9JxQbis2hVh1d2d9jfcyeTZQu&scope=openid profile email get:actors&redirect_uri=https://casting-agency-osama.herokuapp.com/login_assistant" class="list-group-item">I'm a Casting Assistant</a>
+        <a href="https://castingagency.auth0.com/authorize?audience=shows&response_type=code&client_id=ZjgUkMB9JxQbis2hVh1d2d9jfcyeTZQu&scope=openid profile email get:actors&redirect_uri=https://casting-agency-osama.herokuapp.com/login-director" class="list-group-item">I'm a Director</a>
+        <a href="https://castingagency.auth0.com/authorize?audience=shows&response_type=code&client_id=ZjgUkMB9JxQbis2hVh1d2d9jfcyeTZQu&scope=openid profile email get:actors&redirect_uri=https://casting-agency-osama.herokuapp.com/login-producer" class="list-group-item">I'm a Producer</a>
+     </div>
+    </section>
+    <section class="text-center">
+        <img src="static/images/casting-agency2.png" alt="photo" style="width: 1140px;">
+      </section>
+    </div>
+    <div class="container text-center" >
+        <sectoin class="features">
+            <h1>Roles's Permissions </h1>
+            <p class="lead text-center"> <span style="color: #f21515;">Assisant</span><br> 
+              <ul class="list-group text-center" style="width: 600px; margin-left: 270px;">
+                <li class="list-group-item">See all the movies and actors</li>
+            </ul></p>
+            <p class="lead text-center"> <span style="color: #f21515;">Director</span>  <br> 
+              <ul class="list-group text-center" style="width: 600px; margin-left: 270px;">
+                <li class="list-group-item">See all the Movies and Actors</li>
+                <li class="list-group-item">Edit Actors</li>
+                <li class="list-group-item">Updata Actors and Movies</li>
+                <li class="list-group-item">Delete Actors</li>
+            </ul>
+            
+            </p>
+            <p class="lead text-center"> <span style="color: #f21515;">Producer</span>
+              <ul class="list-group text-center" style="width: 600px; margin-left: 270px;">
+                <li class="list-group-item">See all the Movies and Actors</li>
+                <li class="list-group-item">Edit Actors and Movies</li>
+                <li class="list-group-item">Updata Actors and Movies</li>
+                <li class="list-group-item">Delete Actors and Movies</li>
+            </ul>
+          </p>  
+            
+        </sectoin>
+  </div>
+
+</div>
+
+{% endblock %}
+   
