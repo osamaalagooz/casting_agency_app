@@ -2,19 +2,19 @@
 ## Introduction
 Casting Agency is an web App that can show movies and actors.  
 the App has three platforms for thre roles which are  
-- Casting Assistant : 
-who can :
+- Casting Assistant :   
+who can :  
 * See all the Movies and Actors
 
-- Casting Director :
- who can :
+- Casting Director :  
+ who can :  
 * See all the Movies and Actors
 * Edit Actors
 * Updata Actors and Movies
 * Delete Actors
   
-- Excutive Producer
-who can :
+- Excutive Producer  
+who can :  
 * See all the Movies and Actors
 * Edit Actors and Movies
 * Updata Actors and Movies
