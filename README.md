@@ -1,7 +1,7 @@
 # casting_agency_app
 ## Introduction
-Casting Agency is an web App that can show movies and actors .
-the App has three platforms for thre roles which are
+Casting Agency is an web App that can show movies and actors.  
+the App has three platforms for thre roles which are  
 - Casting Assistant : 
 who can :
 * See all the Movies and Actors
