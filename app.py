@@ -575,7 +575,7 @@ def create_app(test_config=None):
 
     @app.errorhandler(500)
     def server_error(error):
-        return (render_template('500.html', data=session['user_info']),
+        return (render_template('500.html'),
                 500)
 
     @app.errorhandler(422)
@@ -583,15 +583,15 @@ def create_app(test_config=None):
         return (jsonify({'success': False,
                 'message': 'Unprocessable Entity', 'error': 422}), 422)
 
-    # @app.errorhandler(401)
-    # def unauthorized(error):
-    #     return (render_template('401.html', data=session['user_info']),
-    #             401)
+    @app.errorhandler(401)
+    def unauthorized(error):
+        return (render_template('401.html'),
+                401)
 
-    # @app.errorhandler(AuthError)
-    # def unauth(error):
-    #     return (render_template('401.html', data=session['user_info']),
-    #             401)
+    @app.errorhandler(AuthError)
+    def unauth(error):
+        return (render_template('401.html'),
+                401)
 
     return app
 
