@@ -102,9 +102,16 @@ To run the server, execute:
 ```bash
 export FLASK_APP=app.py
 export FLASK_ENV=development
+```
+then run your all environment variables
+ex: 
+```bash
+export AUTH0_DOMAIN=YOUR_AUTH0_DOMAIN
+```
+then run the APP by
+```bash
 flask run
 ```
-
 Setting the `FLASK_ENV` variable to `development` will detect file changes and restart the server automatically.
 
 Setting the `FLASK_APP` variable to `flaskr` directs flask to use the `flaskr` directory and the `__init__.py` file to find the application. 
