@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import os
+from os import environ
 from flask import Flask, request, abort, jsonify, render_template, \
     redirect, session, make_response, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
@@ -16,15 +16,8 @@ import urllib.request as uri
 import yaml
 from forms import ActorForm, MovieForm, ActorForm2, MovieForm2
 
-AUTH0_DOMAIN = 'castingagency.auth0.com'
-ALGORITHMS = ['RS256']
-API_AUDIENCE = 'shows'
-YOUR_CLIENT_ID = 'ZjgUkMB9JxQbis2hVh1d2d9jfcyeTZQu'
-YOUR_CLIENT_SECRET = \
-    '1VcM6mSAy3OohWt6KZwwAxeDIZNTQTNHZi3rWEGcjOFbRQWKv3oLtnkLqG7xZ0Nn'
-ASSISTANT_ROLE_ID = 'rol_ZNrwNNQqwSOmhpov'
-DIRECTOR_ROLE_ID = 'rol_HlzotlBP5vkSKGL9'
-PRODUCER_ROLE_ID = 'rol_t2ets4eZtnaqf6Xo'
+
+
 
 
 def create_app(test_config=None):
@@ -34,7 +27,15 @@ def create_app(test_config=None):
     app = Flask(__name__)
     setup_db(app)
     CORS(app)
-    app.config['SECRET_KEY'] = 'oihsvjksfjlherljkjgk'
+    
+    # These are your environment variables
+    # you should implement them from the terminal.
+    # ex: export AUTH0_DOMAIN=YOUR_AUTH0_DOMAIN
+    # or  set AUTH0_DOMAIN=YOUR_AUTH0_DOMAIN
+
+    app.config['SECRET_KEY'] = environ.get('SECRET_KEY')
+    AUTH0_DOMAIN = environ.get('AUTH0_DOMAIN')
+    
 
     @app.after_request
     def after_request(response):
@@ -582,15 +583,15 @@ def create_app(test_config=None):
         return (jsonify({'success': False,
                 'message': 'Unprocessable Entity', 'error': 422}), 422)
 
-    @app.errorhandler(401)
-    def unauthorized(error):
-        return (render_template('401.html', data=session['user_info']),
-                401)
+    # @app.errorhandler(401)
+    # def unauthorized(error):
+    #     return (render_template('401.html', data=session['user_info']),
+    #             401)
 
-    @app.errorhandler(AuthError)
-    def unauth(error):
-        return (render_template('401.html', data=session['user_info']),
-                401)
+    # @app.errorhandler(AuthError)
+    # def unauth(error):
+    #     return (render_template('401.html', data=session['user_info']),
+    #             401)
 
     return app
 

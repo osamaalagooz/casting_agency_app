@@ -1,21 +1,26 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import json
+from os import environ
 from flask import request, _request_ctx_stack, abort, session
 from functools import wraps
 from jose import jwt
 import urllib.request as uri
 import yaml
 
-AUTH0_DOMAIN = 'castingagency.auth0.com'
-ALGORITHMS = ['RS256']
-API_AUDIENCE = 'shows'
-YOUR_CLIENT_ID = 'ZjgUkMB9JxQbis2hVh1d2d9jfcyeTZQu'
-YOUR_CLIENT_SECRET = \
-    '1VcM6mSAy3OohWt6KZwwAxeDIZNTQTNHZi3rWEGcjOFbRQWKv3oLtnkLqG7xZ0Nn'
-YOUR_MNGM_API_CLIENT_ID = 'ku7FNiai7lJUpY88ShrT040ESpDthC85'
-YOUR_MNGM_API_CLIENT_SECRET = \
-    'DpZLfIiUJP0Pj808Ye_9bsekbgwnohsfR7zi_fkbt9xYpr4r_esEwHgBims-hFnD'
+
+# These are your environment variables
+# you should implement them from the terminal.
+# ex: export AUTH0_DOMAIN=YOUR_AUTH0_DOMAIN
+# or  set AUTH0_DOMAIN=YOUR_AUTH0_DOMAIN
+#     
+AUTH0_DOMAIN = environ.get('AUTH0_DOMAIN')
+ALGORITHMS = environ.get('ALGORITHMS')
+API_AUDIENCE = environ.get('API_AUDIENCE')
+YOUR_CLIENT_ID = environ.get('YOUR_CLIENT_ID')
+YOUR_CLIENT_SECRET = environ.get('YOUR_CLIENT_SECRET')
+YOUR_MNGM_API_CLIENT_ID = environ.get('YOUR_MNGM_API_CLIENT_ID')
+YOUR_MNGM_API_CLIENT_SECRET = environ.get('YOUR_MNGM_API_CLIENT_SECRET')
 
 
 # AuthError Exception
@@ -95,7 +100,7 @@ def verify_decode_jwt(token):
 
             payload = jwt.decode(token, rsa_key, algorithms=ALGORITHMS,
                                  audience=API_AUDIENCE,
-                                 issuer='https://' + AUTH0_DOMAIN + '/')
+                                 issuer=f'https://{AUTH0_DOMAIN}/')
 
             return payload
         except jwt.ExpiredSignatureError:
@@ -193,7 +198,7 @@ def get_MGMT_API_ACCESS_TOKEN():
     headers = {}
     headers['content-type'] = 'application/x-www-form-urlencoded'
     data = \
-        f'grant_type=client_credentials&client_id={YOUR_MNGM_API_CLIENT_ID}&client_secret={YOUR_MNGM_API_CLIENT_SECRET}&audience='
+        f'grant_type=client_credentials&client_id={YOUR_MNGM_API_CLIENT_ID}&client_secret={YOUR_MNGM_API_CLIENT_SECRET}&audience=http://127.0.0.1:5000/'
     data = data.encode('ascii')
     req = uri.Request(url, data, headers)
     try:

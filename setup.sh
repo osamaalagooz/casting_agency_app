@@ -1,4 +1,10 @@
-AUTH_DOMAIN=castingagency.auth0.com
-ALGORITHMS=['RS256']
-API_AUDIENCE=shows
-
+# environment variables
+export AUTH0_DOMAIN=castingagency.auth0.com
+export ALGORITHMS=['RS256']
+export API_AUDIENCE=shows
+export YOUR_CLIENT_ID=ZjgUkMB9JxQbis2hVh1d2d9jfcyeTZQu
+export YOUR_CLIENT_SECRET=1VcM6mSAy3OohWt6KZwwAxeDIZNTQTNHZi3rWEGcjOFbRQWKv3oLtnkLqG7xZ0Nn
+export YOUR_MNGM_API_CLIENT_ID=ku7FNiai7lJUpY88ShrT040ESpDthC85
+export YOUR_MNGM_API_CLIENT_SECRET=pZLfIiUJP0Pj808Ye_9bsekbgwnohsfR7zi_fkbt9xYpr4r_esEwHgBims-hFnD
+export SECRET_KEY=oihsvjksfjlherljkjgk
+export datebase_path=postgres://postgres:robot9000@localhost:5432/casting

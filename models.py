@@ -1,15 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import os
+from os import environ
 from sqlalchemy import Column, String, Integer, DateTime, \
     create_engine, ForeignKey, Date
 from flask_sqlalchemy import SQLAlchemy
 import json
 from flask_migrate import Migrate
 
-database_name = 'casting'
-datebase_path = "postgres://{}:{}@{}/{}".format('postgres', 'robot9000','localhost:5432', database_name)
 
+# from your environment variables
+#ex: export database_path=YOUR_DATABASE_PATH
+datebase_path = environ.get('datebase_path')
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -23,7 +24,7 @@ def setup_db(app, datebase_path=datebase_path):
     migrate.init_app(app, db)
 
 
-    # db.create_all()
+    
 
 class Movie(db.Model):
 
