@@ -1,5 +1,5 @@
 # casting_agency_app
-visit : https://casting-agency-osama.herokuapp.com/
+
 ## Introduction
 Casting Agency is an web App that can show movies and actors.  
 the App has three platforms for three roles which are  
